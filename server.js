@@ -26,7 +26,7 @@ const User = require('./models/user');
 
 const indexRoutes = require('./routes/index');
 
-const dashboardRoutes = require('./routes/dashboard');
+const homeRoutes = require('./routes/home');
 
 // Gzip compression
 
@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 // refactored routes
 
 app.use('/', indexRoutes); // by saying this we write shorter code in routes
-app.use('/dashboard', dashboardRoutes);
+app.use('/home', homeRoutes);
 
 // error 404 page
 

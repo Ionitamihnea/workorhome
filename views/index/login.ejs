@@ -1,42 +1,41 @@
 <% include ../partials/header %>
 
 <div class="container content">
-    
-    <div class="columns toptitle">
+    <div class="notification">
+    <div class="columns toptitle has-text-centered">
         <div class="column">
-            <h1>Welcome to Work or Home</h1>
-            <p>Sign in or <a href="/register">Register</a></p>
+            <h1>Login to Work or Home!</h1>
         </div>
     </div>
     
     <div class="columns">
-        <div class="column" >
-            <form action="/login" method="POST">
-                <input class="input smmargin" name="username" placeholder="Username" type="text" required />
-                <input class="input smmargin" name="password" placeholder="Password" type="password" required />
-                <label class="checkbox">
-                    <input type="checkbox">
-                        Remember me
-                </label>
+        <div class="column">
+            <form action="/login" method="POST">                   
+                      <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input smmargin" name="username" placeholder="Username" type="text" required  autofocus/>
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input smmargin" name="password" placeholder="Password" type="password" required />
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                            </span>
+                        </div>
+                      </div>
                 <div class="control smmargin">
-                    <button class="button is-primary">Login</button>
+                    <button class="button is-primary is-large is-fullwidth">Login</button>
                 </div>
-                
+                <h6 class="has-text-centered">Don't have an account yet? <a href="/register">Register!</a></h6>
             </form>
-            <a href="#" >Reset Password</a>
-            
         </div>
-        <div class="column">
-            <div class="separator"></div>
-        </div>
-        <div class="column">
-                <div class="control smmargin">
-                    <button class="button is-primary">Sign in with Google</button>
-                </div>
-                <div class="control smmargin">
-                    <button class="button is-primary">Sign in with Facebook</button>
-                </div>
-        </div>
+    </div>
     </div>
 </div>
 

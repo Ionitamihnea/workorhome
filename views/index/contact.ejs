@@ -1,47 +1,66 @@
 <% include ../partials/header %>
-
 <div class="container content">
-        <div class="columns toptitle">
-            <div class="column">
-                <h1>Contact Us</h1>
-                <p>What can we help you with?</p>
-            </div>
+    <div class="notification">
+    <div class="columns toptitle has-text-centered">
+        <div class="column">
+            <h1>Contact Me</h1>
+            <p class="buttons is-centered">
+            <a class="button is-medium" href="https://github.com/Ionitamihnea" target="_blank">
+            <span class="icon is-medium">
+                <i class="fab fa-github"></i>
+            </span>
+            <span>GitHub</span>
+            </a>
+            <a class="button is-medium" href="https://www.facebook.com/mihnea.ionita" target="_blank">
+                <span class="icon is-medium">
+                    <i class="fab fa-facebook"></i>
+                </span>
+            <span>Facebook</span>
+            </a>
+            <a class="button is-medium" href="https://www.linkedin.com/in/mihnea-ionita-090278168/" target="_blank">
+                <span class="icon is-medium">
+                    <i class="fab fa-linkedin"></i>
+                </span>
+            <span>Linkedin</span>
+            </a>
+            </p>
         </div>
-        
-        <div class="columns">
-            <div class="column" >
-                <form action="/contact/send" method="POST">
-                    <input class="input smmargin" name="name" placeholder="Name" type="text" required />
-                    <input class="input smmargin" name="email" placeholder="Email" type="email" required />
-                    <div class="select smmargin">
-                            <select name="Topic">
-                                <option value="" disabled selected>Topic</option>
-                                <option value="">Category</option>
-                                <option value="">Category</option>
-                                <option value="">Category</option>
-                                <option value="">Category</option>
-                                <option value="">Category</option>
-                            </select>
-                    </div>
-                    <textarea class="textarea smmargin" placeholder="Message"></textarea>
-                    <div class="control smmargin">
-                        <button class="button is-primary">Send</button>
-                    </div>
-                    
-                </form>       
-            </div>
-            <div class="column">
-                    <div class="separator"></div>
+    </div>
+    
+    <div class="columns">
+        <div class="column">
+            <form action="/contact/send" method="POST">                   
+                      <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control has-icons-left has-icons-right">
+                          <input class="input smmargin" name="name" placeholder="Your name" type="text" required  autofocus/>
+                          <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control has-icons-left has-icons-right">
+                            <input class="input smmargin" name="email" placeholder="your@email.com" type="email" required />
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                            </span>
+                        </div>
+                      </div>
+                      <div class="field">
+                        <label class="label">Message</label>
+                        <div class="control">
+                            <textarea class="textarea" placeholder="Your message"></textarea>
+                        </div>
+                      </div>
+                <div class="control smmargin">
+                    <button class="button is-primary is-large is-fullwidth">Send</button>
                 </div>
-                <div class="column">
-                        <h2>Check our FAQ out</h2>
-                        <p><button class="button">Topic 1</button></p>
-                        <p><button class="button">Topic 2</button></p>
-                        <p><button class="button">Topic 3</button></p>
-                        <p><button class="button">Topic 4</button></p>
-                        <p><button class="button">Topic 5</button></p>
-                </div>
+            </form>
         </div>
+    </div>
+    </div>
 </div>
 
 <% include ../partials/footer %>

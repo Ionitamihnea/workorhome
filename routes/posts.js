@@ -8,20 +8,8 @@ const middleware = require('../middleware');
 
 const { isLoggedIn, checkUserpost } = middleware; // destructuring assignment
 
-// show all categories
-router.get('/', (req, res) => {
-  // Get all categories from DB
-  post.find({}, (err, allposts) => {
-    if (err) {
-      req.flash('error', err.message);
-    } else {
-      res.render('index/categories', { posts: allposts, page: 'categories' });
-    }
-  });
-});
-
 // show all posts inside specific category
-router.get('/posts', (req, res) => {
+router.get('/', (req, res) => {
 // Get all posts from DB
   post.find({}, (err, allposts) => {
     if (err) {
@@ -32,7 +20,7 @@ router.get('/posts', (req, res) => {
   });
 });
 // CREATE - add new post to DB
-router.post('/posts', isLoggedIn, (req, res) => {
+router.post('/', isLoggedIn, (req, res) => {
 // get data from form and add to posts array
   const work = req.body.work;
   const desc = req.body.description;
@@ -60,12 +48,12 @@ router.post('/posts', isLoggedIn, (req, res) => {
 });
 
 // NEW - show form to create new post
-router.get('/posts/new', isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('posts/post_new');
 });
 
 // SHOW - shows more info about one post
-router.get('/posts/:id', (req, res) => {
+router.get('/:id', (req, res) => {
 // find the post with provided ID
   post.findById(req.params.id).exec((err, foundpost) => {
     if (err || !foundpost) {
@@ -78,7 +66,7 @@ router.get('/posts/:id', (req, res) => {
 });
 
 // EDIT - shows edit form for a post
-router.get('/posts/:id/edit', isLoggedIn, checkUserpost, (req, res) => {
+router.get('/:id/edit', isLoggedIn, checkUserpost, (req, res) => {
   post.findById(req.params.id, (err, foundpost) => {
     if (err) {
       req.flash('error', err.message);
@@ -91,7 +79,7 @@ router.get('/posts/:id/edit', isLoggedIn, checkUserpost, (req, res) => {
 });
 
 // PUT - updates post in the database
-router.put('/posts/:id', isLoggedIn, checkUserpost, (req, res) => {
+router.put('/:id', isLoggedIn, checkUserpost, (req, res) => {
   post.findByIdAndUpdate(req.params.id, req.body.post, (err) => {
     if (err) {
       req.flash('error', 'Error editing post!');
@@ -105,7 +93,7 @@ router.put('/posts/:id', isLoggedIn, checkUserpost, (req, res) => {
 
 // DELETE - deletes post from database - don't forget to add "are you sure" on frontend
 
-router.delete('/posts/:id', isLoggedIn, checkUserpost, (req, res) => {
+router.delete('/:id', isLoggedIn, checkUserpost, (req, res) => {
   post.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       req.flash('error', err.message);

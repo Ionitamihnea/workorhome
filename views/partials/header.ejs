@@ -8,4 +8,58 @@
     <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="/css/bulma.min.css" />
 </head>
-<body>
+<body> 
+<section class="hero is-primary is-fullheight">
+<!-- Hero head: will stick at the top -->
+<div class="hero-head">
+    <nav class="navbar">
+    <div class="container">
+        <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+            <span class="icon">
+            <i class="fas fa-building"></i>
+            </span>
+            OR 
+            <span class="icon">
+            <i class="fas fa-home"></i>
+            </span>
+        </a>
+        <a role="button" class="navbar-burger" data-target="navbarMenuHeroA" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        </div>
+        <div id="navbarMenuHeroA" class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item" href="/">
+            Home
+            </a>
+            <a class="navbar-item" href="/posts">
+            Posts
+            </a>
+            <a class="navbar-item" href="/contact">
+            Contact
+            </a>
+            <% if(!currentUser){ %>
+                <a class="navbar-item" href="/login">
+                    Login
+                </a>
+            <% } else { %>
+                <a class="navbar-item" href="/logout">
+                    Logout
+                </a>
+            <% } %>
+            <span class="navbar-item">
+            <a class="button is-primary is-inverted" href="https://github.com/Ionitamihnea/workorhome">
+                <span class="icon">
+                <i class="fab fa-github"></i>
+                </span>
+                <span>Source</span>
+            </a>
+            </span>
+        </div>
+        </div>
+    </div>
+    </nav>
+</div>

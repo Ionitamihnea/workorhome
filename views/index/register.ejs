@@ -1,6 +1,13 @@
 <% include ../partials/header %>
 <div class="container content">
     <div class="notification">
+        <% if(errors){ %>
+            <div class="notification is-danger" role="alert"> 
+            <% errors.forEach(function( err){ %>
+                <%= err.msg %><br>
+            <% }) %>
+            </div>
+        <% } %>
     <div class="columns toptitle has-text-centered">
         <div class="column">
             <h1>Register an account on Work or Home!</h1>

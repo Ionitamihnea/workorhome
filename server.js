@@ -4,6 +4,10 @@ const compression = require('compression');
 
 const app = express();
 
+const expressValidator = require('express-validator');
+
+app.use(expressValidator());
+
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');

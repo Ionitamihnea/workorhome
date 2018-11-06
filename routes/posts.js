@@ -1,21 +1,21 @@
 const express = require('express');
 
-const post = require('../models/post');
-
 const router = express.Router();
+
+const post = require('../models/post');
 
 const middleware = require('../middleware');
 
 const { isLoggedIn, checkUserpost } = middleware; // destructuring assignment
 
 // show all posts inside specific category
-router.get('/', (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
 // Get all posts from DB
   post.find({}, (err, allposts) => {
     if (err) {
       req.flash('error', err.message);
     } else {
-      res.render('posts/post_all', { posts: allposts, page: 'posts' });
+      res.render('posts/post_all', { posts: allposts });
     }
   });
 });
@@ -23,15 +23,15 @@ router.get('/', (req, res) => {
 router.post('/', isLoggedIn, (req, res) => {
 // get data from form and add to posts array
   const work = req.body.work;
-  const desc = req.body.description;
+  const description = req.body.description;
   const author = {
     id: req.user._id,
     username: req.user.username,
   };
-  const createdAt = Date.now;
+  const createdAt = req.body.date;
   const newpost = {
     work: work,
-    description: desc,
+    description: description,
     author: author,
     createdAt: createdAt,
   };

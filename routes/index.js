@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 // show register form
 router.get('/register', (req, res) => {
-  res.render('index/register', { page: 'register' });
+  res.render('index/register', { errors: req.session.errors });
 });
 
 //  handle sign up logic
@@ -27,15 +27,14 @@ router.post('/register', (req, res) => {
   req.check('password', 'Password must be at least 6 characters long.').notEmpty().isLength({ min: 6 });
   const errors = req.validationErrors();
   if (errors) {
-    res.render('signup', {
+    res.render('index/register', {
       errors: errors,
     });
   } else {
-    const newUser = new User({ username: req.body.username });
-    User.register(newUser, req.body.password, (err) => {
+    User.register(new User({ username: req.body.username }), req.body.password, (err) => {
       if (err) {
-        req.flash('error', err.message);
-        return res.render('index/register', { error: err.message });
+        req.flash('error', `${err.message}`);
+        res.render('index/register', { errors: errors });
       }
       passport.authenticate('local')(req, res, () => {
         req.flash('success', `Successfully signed up! Nice to meet you ${req.body.username}`);
@@ -53,7 +52,7 @@ router.get('/login', (req, res) => {
 //  handling login logic
 router.post('/login', passport.authenticate('local',
   {
-    successRedirect: '/',
+    successRedirect: '/posts/new',
     failureRedirect: '/login',
     failureFlash: true,
     successFlash: 'Welcome to Work or Home!',
@@ -120,7 +119,7 @@ router.post('/contact/send', (req, res) => {
       console.log('Message sent: %s', info.messageId);
       // Preview only available when sending through an Ethereal account
       console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-      req.flash('success', 'Successfully sent a mail! We will get back to you as soon as possible!');
+      req.flash('success', 'Successfully sent a mail! I will get back to you as soon as possible!');
       res.redirect('/contact');
     });
   });

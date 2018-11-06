@@ -63,3 +63,18 @@
     </div>
     </nav>
 </div>
+    <% if(error && error.length > 0) { %>
+    <div class="container is-fluid">
+        <div class="notification is-danger" role="alert">
+            <%= error %>
+        </div>
+    </div>
+    <% } %>
+    <% if(success && success.length > 0) { %>
+        <div class="container is-fluid">
+            <div class="notification is-success" role="alert">
+                <%= success %>
+            </div>
+        </div>
+    <% } %>
+    

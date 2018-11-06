@@ -1,5 +1,50 @@
 <% include ../partials/header %>
-<a href="/">
-<button class="btn">Back</button>
-</a>
+<div class="container content">
+        <div class="notification">
+        <div class="columns toptitle has-text-centered">
+            <div class="column">
+                <h1>Hello! Where are you working from?</h1>
+            </div>
+        </div>
+        
+        <div class="columns is-centered">
+            <div class="columns has-text-centered">
+                <div class="column">
+                    <form action="/posts" method="POST" onsubmit="return confirm('Are you sure?');">
+                        <div class="field">
+                            <label class="label">Optional message</label>
+                            <div class="control">
+                                <textarea class="textarea" name="description" placeholder="Your message"></textarea>
+                                <input type="hidden" name="work" value="office" />
+                            </div>
+                        </div>
+                        <button type="submit" class="button is-primary">
+                            <span class="icon">
+                                <i class="fas fa-building"></i>
+                            </span>
+                            <span>Office</span>
+                        </button>
+                    </form>
+                </div>
+                <div class="column">
+                    <form action="/posts" method="POST" onsubmit="return confirm('Are you sure?');">
+                        <div class="field">
+                            <label class="label">Optional message</label>
+                            <div class="control">
+                                <textarea class="textarea" name="description" placeholder="Your message"></textarea>
+                                <input type="hidden" name="work" value="home" />
+                            </div>
+                        </div>
+                        <button class="button is-primary">
+                            <span class="icon">
+                                <i class="fas fa-home"></i>
+                            </span>
+                            <span>Home</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
 <% include ../partials/footer %>

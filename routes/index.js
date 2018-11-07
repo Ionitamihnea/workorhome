@@ -12,6 +12,8 @@ const User = require('../models/user');
 
 // index route
 
+moment.locale();
+
 router.get('/', (req, res) => {
   res.render('index', { currentUser: req.user, data: moment().format('LLLL') });
 });

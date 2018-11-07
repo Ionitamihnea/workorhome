@@ -15,7 +15,7 @@ const User = require('../models/user');
 moment.locale();
 
 router.get('/', (req, res) => {
-  res.render('index', { currentUser: req.user, data: moment().format('LLLL') });
+  res.render('index', { currentUser: req.user });
 });
 
 // show register form

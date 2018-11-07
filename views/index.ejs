@@ -10,12 +10,21 @@
         Today it's <%= data %>
     </h2>
     <p class="buttons has-addons is-centered">
-        <a class="button is-light is-large" href="/login">
-            <span class="icon">
-                <i class="fas fa-sign-in-alt"></i>
-            </span>
-            <span>Login</span>
-        </a>
+        <% if(!currentUser){ %>
+            <a class="button is-light is-large" href="/login">
+                <span class="icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>Login</span>
+            </a>
+        <% } else { %>
+            <a class="button is-light is-large" href="/posts/new">
+                <span class="icon">
+                    <i class="fas fa-calendar-plus"></i>
+                </span>
+                <span>New post</span>
+            </a>
+        <% } %>
         <a class="button is-light is-large" href="/contact">
             <span class="icon">
                 <i class="fas fa-file-signature"></i>

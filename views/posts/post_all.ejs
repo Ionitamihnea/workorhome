@@ -1,5 +1,30 @@
 <% include ../partials/header %>
-<a href="/">
-<button class="btn">Back</button>
-</a>
+<table class="table">
+<thead>
+    <tr>
+    <th>Name</th>
+    <th>Works</th>
+    <th>Comment</th>
+    <th>Added</th>
+    </tr>
+</thead>
+<tfoot>
+    <tr>
+    <th>Name</th>
+    <th>Works</th>
+    <th>Comment</th>
+    <th>Added</th>
+    </tr>
+</tfoot>
+<% posts.forEach(function(post){ %>
+<tbody>
+    <tr>
+    <th><%= post.author.username %></th>
+    <td>From <%= post.work %></td>
+    <td><%= post.description %></td>
+    <td><%= moment(post.createdAt).fromNow() %></td>
+    </tr>
+    <% }); %>
+</tbody>
+</table>
 <% include ../partials/footer %>

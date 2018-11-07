@@ -2,16 +2,22 @@ const express = require('express');
 
 const router = express.Router();
 
+const moment = require('moment');
+
 const post = require('../models/post');
 
 const middleware = require('../middleware');
 
 const { isLoggedIn, checkUserpost } = middleware; // destructuring assignment
 
+const start = moment().startOf('day'); // set to 12:00 am today
+
+const end = moment().endOf('day'); // set to 23:59 pm today
+
 // show all posts inside specific category
 router.get('/', isLoggedIn, (req, res) => {
 // Get all posts from DB
-  post.find({}, (err, allposts) => {
+  post.find({ createdAt: { $gte: start, $lt: end } }, (err, allposts) => {
     if (err) {
       req.flash('error', err.message);
     } else {

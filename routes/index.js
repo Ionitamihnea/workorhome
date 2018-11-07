@@ -37,7 +37,7 @@ router.post('/register', (req, res) => {
         res.render('index/register', { errors: errors });
       }
       passport.authenticate('local')(req, res, () => {
-        req.flash('success', `Successfully signed up! Nice to meet you ${req.body.username}`);
+        req.flash('success', `Successfully signed up! Nice to meet you ${req.body.username}!`);
         res.redirect('/');
       });
     });
@@ -78,6 +78,9 @@ router.get('/contact', (req, res) => {
   res.render('index/contact');
 });
 
+const EMAIL_USER = process.env.USER;
+const EMAIL_API_KEY = process.env.EMAIL_API_KEY;
+
 router.post('/contact/send', (req, res) => {
   const output = `
   <h1>You have a new contact request</h1>
@@ -94,31 +97,28 @@ router.post('/contact/send', (req, res) => {
   nodemailer.createTestAccount(() => {
     // create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
-      host: 'smtp.ethereal.email',
-      port: 587,
+      host: 'smtp.sendgrid.net',
+      port: 465,
       auth: {
-        user: 'k4nsyiavbcbmtcxx@ethereal.email',
-        pass: 'Mx2qnJcNKM5mp4nrG3',
+        user: EMAIL_USER,
+        pass: EMAIL_API_KEY,
       },
     });
 
     // setup email data with unicode symbols
     const mailOptions = {
-      from: "'Work or Home' <k4nsyiavbcbmtcxx@ethereal.email>", // sender address
+      from: "'Work or Home' <workorhome@mail.com>", // sender address
       to: 'ionitamihnea97@gmail.com', // list of receivers
       subject: 'Work or Home - Contact Request', // Subject line
       html: output, // html body
     };
 
     // send mail with defined transport object
-    transporter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error) => {
       if (error) {
         req.flash('error', `${error.message}`);
         res.render('back', { error: error.message });
       }
-      console.log('Message sent: %s', info.messageId);
-      // Preview only available when sending through an Ethereal account
-      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       req.flash('success', 'Successfully sent a mail! I will get back to you as soon as possible!');
       res.redirect('/contact');
     });

@@ -13,7 +13,7 @@ const User = require('../models/user');
 // index route
 
 router.get('/', (req, res) => {
-  res.render('index', { currentUser: req.user, data: moment().format('MMMM Do YYYY, h:mm:ss a') });
+  res.render('index', { currentUser: req.user, data: moment().format('LLLL') });
 });
 
 // show register form
@@ -23,7 +23,7 @@ router.get('/register', (req, res) => {
 
 //  handle sign up logic
 router.post('/register', (req, res) => {
-  req.check('username', 'Username must contain between 3 and 20 letters and numbers.').isAlphanumeric().notEmpty().isLength({ min: 3, max: 20 });
+  req.check('username', 'Username must contain between 3 and 20 letters.').matches(/^[a-z ]+$/i).notEmpty().isLength({ min: 3, max: 20 });
   req.check('password', 'Password must be at least 6 characters long.').notEmpty().isLength({ min: 6 });
   const errors = req.validationErrors();
   if (errors) {

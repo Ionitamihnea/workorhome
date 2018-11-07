@@ -78,7 +78,7 @@ router.get('/contact', (req, res) => {
   res.render('index/contact');
 });
 
-const EMAIL_USER = process.env.USER;
+const EMAIL_USER = process.env.EMAIL_USER;
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY;
 
 router.post('/contact/send', (req, res) => {
